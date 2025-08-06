@@ -179,59 +179,92 @@
 
 
 
-import React from 'react';
+// import React from 'react';
 
-function CyberForum() {
+// function CyberForum() {
+//   return (
+//     <div className="bg-[#121212] text-white font-sans min-h-screen flex">
+
+//       {/* Sidebar Navigation */}
+//       <aside className="w-64 bg-[#1F1F1F] h-screen p-6 hidden md:block fixed left-0 top-0">
+//         <h2 className="text-2xl font-bold mb-8">Cyber Forum</h2>
+//         <nav className="flex flex-col space-y-4">
+//           <a href="/dashboard" className="hover:text-blue-400">Dashboard</a>
+//           <a href="/cyber-profile" className="hover:text-blue-400">Profile</a>
+//           <a href="/questions" className="hover:text-blue-400">Questions</a>
+//           <a href="/answers" className="hover:text-blue-400">Answers</a>
+//           <a href="/posts" className="hover:text-blue-400">Posts</a>
+//           <a href="/settings" className="hover:text-blue-400">Settings</a>
+//         </nav>
+//       </aside>
+
+//       {/* Main Dashboard Content */}
+//       <div className="flex-grow md:ml-64 py-10 px-6">
+//         <div className="w-full mx-auto">
+//           <h1 className="text-3xl font-bold mb-6">Welcome to your Dashboard</h1>
+
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//             {/* Stats */}
+//             <div className="bg-[#1F1F1F] p-6 rounded-lg shadow-md">
+//               <h2 className="text-xl font-semibold mb-2">0 Questions</h2>
+//               <p className="text-gray-400 text-sm">You haven't asked anything yet.</p>
+//             </div>
+//             <div className="bg-[#1F1F1F] p-6 rounded-lg shadow-md">
+//               <h2 className="text-xl font-semibold mb-2">0 Answers</h2>
+//               <p className="text-gray-400 text-sm">No answers submitted yet.</p>
+//             </div>
+//             <div className="bg-[#1F1F1F] p-6 rounded-lg shadow-md">
+//               <h2 className="text-xl font-semibold mb-2">0 Posts</h2>
+//               <p className="text-gray-400 text-sm">No community posts created yet.</p>
+//             </div>
+//           </div>
+
+//           <div className="mt-10">
+//             <h2 className="text-xl font-semibold mb-4">Get Started</h2>
+//             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Ask a Question</button>
+//               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Answer a Question</button>
+//               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Make a Post</button>
+//               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Update Your Profile</button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default CyberForum;
+
+
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+function ForumList() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/forum/posts')
+      .then(res => setPosts(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
   return (
-    <div className="bg-[#121212] text-white font-sans min-h-screen flex">
-
-      {/* Sidebar Navigation */}
-      <aside className="w-64 bg-[#1F1F1F] h-screen p-6 hidden md:block fixed left-0 top-0">
-        <h2 className="text-2xl font-bold mb-8">Cyber Forum</h2>
-        <nav className="flex flex-col space-y-4">
-          <a href="/dashboard" className="hover:text-blue-400">Dashboard</a>
-          <a href="/cyber-profile" className="hover:text-blue-400">Profile</a>
-          <a href="/questions" className="hover:text-blue-400">Questions</a>
-          <a href="/answers" className="hover:text-blue-400">Answers</a>
-          <a href="/posts" className="hover:text-blue-400">Posts</a>
-          <a href="/settings" className="hover:text-blue-400">Settings</a>
-        </nav>
-      </aside>
-
-      {/* Main Dashboard Content */}
-      <div className="flex-grow md:ml-64 py-10 px-6">
-        <div className="w-full mx-auto">
-          <h1 className="text-3xl font-bold mb-6">Welcome to your Dashboard</h1>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Stats */}
-            <div className="bg-[#1F1F1F] p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">0 Questions</h2>
-              <p className="text-gray-400 text-sm">You haven't asked anything yet.</p>
-            </div>
-            <div className="bg-[#1F1F1F] p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">0 Answers</h2>
-              <p className="text-gray-400 text-sm">No answers submitted yet.</p>
-            </div>
-            <div className="bg-[#1F1F1F] p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-2">0 Posts</h2>
-              <p className="text-gray-400 text-sm">No community posts created yet.</p>
-            </div>
-          </div>
-
-          <div className="mt-10">
-            <h2 className="text-xl font-semibold mb-4">Get Started</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Ask a Question</button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Answer a Question</button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Make a Post</button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">Update Your Profile</button>
-            </div>
-          </div>
-        </div>
+    <div className="p-6">
+      <h2 className="text-3xl font-bold mb-6">Cybersecurity Forum</h2>
+      <Link to="/forum/new" className="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">+ New Thread</Link>
+      <div className="grid gap-4">
+        {posts.map(post => (
+          <Link to={`/forum/${post._id}`} key={post._id} className="border p-4 rounded shadow">
+            <h3 className="text-xl font-semibold">{post.title}</h3>
+            <p className="text-sm text-gray-600">{post.category} | {new Date(post.createdAt).toLocaleDateString()}</p>
+            {post.imageUrl && <img src={post.imageUrl} alt="Post image" className="mt-2 max-h-40 object-cover" />}
+          </Link>
+        ))}
       </div>
     </div>
   );
 }
 
-export default CyberForum;
+export default ForumList;

@@ -14,8 +14,9 @@ import Stats from "./components/Stats";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Chatbot from "./components/Chatbot";
-import CyberForum from "./components/CyberForum";
 import CyberForumProfile from "./subpages/ForumProfile";
+import ForumList from "./components/ForumList.";
+import NewThreadForm from "./components/NewThreadForm";
 
 function App() {
   const [isAuth, setIsAuth] = useState(
@@ -58,7 +59,9 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/chatbot" element={<Chatbot />} />
-        <Route path="/cyber-profile" element={<CyberForumProfilen />} />
+        {/* <Route path="/cyber-profile" element={</>} /> */}
+        <Route path="/forum" element={<ForumList />} />
+         <Route path="/forum/new" element={<NewThreadForm />} />
         <Route path="/" element={
           <>
           <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
@@ -78,3 +81,4 @@ function App() {
 }
 
 export default App;
+

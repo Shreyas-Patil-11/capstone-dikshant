@@ -308,13 +308,13 @@ function Solutions() {
                 <li className="flex items-start"><i className="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span className="text-sm">Best practice sharing</span></li>
               </ul>
               <a
-                href="/cyber-profile"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition"
-              >
-                View Profile
-              </a>
+  href="/forum"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition"
+>
+  Visit Cyber Forum
+</a>
             </div>
           </div>
         </div>
